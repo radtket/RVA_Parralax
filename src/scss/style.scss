@@ -1,0 +1,141 @@
+//colors
+$black: #000000;
+$white: #ffffff;
+$color-arrowtown: #968b6b;
+$color-downy: #69c6b4;
+$color-eagle: #bcc2a0;
+$color-froly: #f0688e;
+$color-gold-sand: #eabd93;
+$color-laurel: #739d75;
+$color-old-rose: #b98474;
+$color-pigeon-post: #a8b1dc;
+$color-pink-swan: #bbbbbb;
+$color-primrose: #ebe996;
+$color-rajah: #f4b75e;
+$color-riptide: #8cd3d7;
+$color-sail: #b7dff8;
+$color-sweet-corn: #f9ec90;
+$color-terracotta: #ef705d;
+$color-wild-willow: #b6bd79;
+
+
+
+//background-images
+$url-0: url("../img/backgrounds/bellevue.jpg");
+$url-1: url("../img/backgrounds/carytown.jpg");
+$url-2: url("../img/backgrounds/museum-district.jpg");
+$url-3: url("../img/backgrounds/the-fan.jpg");
+$url-4: url("../img/backgrounds/forest-hill.jpg");
+$url-5: url("../img/backgrounds/manchester.jpg");
+$url-6: url("../img/backgrounds/oregon-hill.jpg");
+$url-7: url("../img/backgrounds/randolph.jpg");
+$url-8: url("../img/backgrounds/monroe-ward.jpg");
+$url-9: url("../img/backgrounds/jackson-ward.jpg");
+$url-10: url("../img/backgrounds/highland-park.jpg");
+$url-11: url("../img/backgrounds/downtown.jpg");
+$url-12: url("../img/backgrounds/shockoe-slip.jpg");
+$url-13: url("../img/backgrounds/shockoe-bottom.jpg");
+$url-14: url("../img/backgrounds/church-hill.jpg");
+
+
+$i: -1;
+$backgrounds: ($url-0, $color-primrose),
+($url-1, $color-froly),
+($url-2, $color-old-rose),
+($url-3, $color-sweet-corn),
+($url-4, $color-eagle),
+($url-5, $color-pigeon-post),
+($url-6, $color-wild-willow),
+($url-7, $color-terracotta),
+($url-8, $color-gold-sand),
+($url-9, $color-riptide),
+($url-10, $color-downy),
+($url-11, $color-sail),
+($url-12, $color-arrowtown),
+($url-13, $color-laurel),
+($url-14, $color-rajah);
+
+$navbar-height: 90px;
+$navbar-logo-height: $navbar-height * .66;
+
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+#content {
+	height: 100%;
+}
+
+.section {
+	background: $white;
+	height: 100vh;
+	min-height: 260px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+
+	&:first-of-type {
+		padding-bottom: $navbar-height;
+		position: relative;
+		top: $navbar-height;
+
+		.section__background {
+			// Offset Half of Navbar size
+			background-position: 50% calc(50% + 45px);
+		}
+	}
+
+	&__background {
+		background-attachment: fixed;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: auto 50%;
+		height: 100%;
+		margin: 0;
+		min-height: 260px;
+		width: 100%;
+
+		@media screen and(max-device-width: 768px),
+			screen and(max-device-width: 320px) {
+			background-attachment: scroll;
+			background-position: 50vw 50%;
+			background-repeat: repeat-x;
+			background-size: contain;
+		}
+
+		@each $image,
+		$color in $backgrounds {
+			$i: $i + 1;
+
+			&--#{$i} {
+				background-color: $color;
+				background-image: $image;
+			}
+		}
+	}
+}
+
+nav {
+	background: $black;
+	height: $navbar-height;
+	left: 0;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+
+	svg {
+		display: inline-block;
+		fill: $color-pink-swan;
+		height: $navbar-logo-height;
+		margin: (($navbar-height - $navbar-logo-height) / 2) auto;
+		transition: all 0.27s cubic-bezier(0, 0, 0.58, 1);
+		width: 100%;
+	}
+}
